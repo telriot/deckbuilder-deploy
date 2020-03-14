@@ -7,7 +7,7 @@
     "install-client": "cd client && npm install",
     "server": "nodemon ./bin/www",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm run install-client && npm run build",
-    "start": "node app.js",
+    "start": "node ./bin/www",
     "client": "npm start --prefix ./client",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
