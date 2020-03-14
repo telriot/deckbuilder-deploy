@@ -76,4 +76,10 @@ app.use("/api/decks/:id/comments", commentsRouter)
 app.use("/api/decks/:id/matchups", matchupsRouter)
 app.use("/api/decks/:id/sideguides", sideguidesRouter)
 
+// Build production settings
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"))
+}
+
 module.exports = app

@@ -3,7 +3,11 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "build": "cd client && npm run build",
+    "install-client": "cd client && npm install",
     "server": "nodemon ./bin/www",
+    "heroku-postbuild": "npm run install-client && npm run build",
+    "start": "node app.js",
     "client": "npm start --prefix ./client",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
