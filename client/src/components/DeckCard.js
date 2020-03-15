@@ -23,7 +23,7 @@ const DeckCard = props => {
   } = props
 
   const { stdBlue } = palette
-  const { isLG } = useContext(WindowSizeContext)
+  const { isLG, isXS } = useContext(WindowSizeContext)
 
   const commentIcon = (
     <FontAwesomeIcon style={{ color: stdBlue }} icon={faCommentAlt} />
@@ -90,7 +90,7 @@ const DeckCard = props => {
               className="d-flex flex-column justify-content-center align-items-center px-1"
               xs={3}
             >
-              <p>
+              <p className={isXS ? "mb-2" : ""}>
                 {commentIcon} {comments.length}
               </p>
               <OverlayTrigger
@@ -110,11 +110,11 @@ const DeckCard = props => {
                   </Tooltip>
                 }
               >
-                <p>
+                <p className={isXS ? "mb-2" : ""}>
                   {matchupIcon} {matches.length}
                 </p>
               </OverlayTrigger>
-              <p>
+              <p className={isXS ? "mb-2" : ""}>
                 {sideGuideIcon} {sideGuides && sideGuides.length}
               </p>
             </Col>

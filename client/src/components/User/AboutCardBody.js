@@ -47,7 +47,7 @@ const AboutCardBody = props => {
       ) : (
         <Fragment>
           {user.description && <Card.Text>'{user.description}'</Card.Text>}
-          {user.country && <Card.Text>From {user.country}</Card.Text>}
+          {user.country && <Card.Text>From: {user.country}</Card.Text>}
           {user.city && <Card.Text>Lives in {user.city}</Card.Text>}
         </Fragment>
       )}

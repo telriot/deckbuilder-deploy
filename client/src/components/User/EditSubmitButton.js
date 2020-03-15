@@ -3,10 +3,14 @@ import { UserContext } from "../../contexts/UserContext"
 import { Button } from "react-bootstrap"
 
 const EditSubmitButton = () => {
-  const { isLoading } = useContext(UserContext)
+  const { isLoading, userLoading } = useContext(UserContext)
   return (
     <div>
-      <Button disabled={isLoading} variant="primary" type="submit">
+      <Button
+        disabled={isLoading || userLoading}
+        variant="primary"
+        type="submit"
+      >
         Save changes
       </Button>
     </div>

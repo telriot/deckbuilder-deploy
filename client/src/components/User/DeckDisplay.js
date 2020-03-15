@@ -15,7 +15,7 @@ const UserDeckDisplay = props => {
   } = props
   const { isXS } = useContext(WindowSizeContext)
 
-  const paginationAndFilter = (
+  const paginationAndFilter = decksDisplay && (
     <div className="d-flex justify-content-between mb-2">
       <BasicPagination pages={pages} page={page} setPage={setPage} />
 
@@ -39,8 +39,7 @@ const UserDeckDisplay = props => {
 
   return (
     <Fragment>
-      {paginationAndFilter}
-
+      {decksDisplay && paginationAndFilter}
       <Row>{decksDisplay} </Row>
       {decksDisplay.length ? isXS && paginationAndFilter : ""}
     </Fragment>

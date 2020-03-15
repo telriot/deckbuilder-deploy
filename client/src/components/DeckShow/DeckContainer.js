@@ -58,7 +58,6 @@ const DeckContainer = () => {
   const finalList = buildFinalList()
 
   const typeList = () => {
-    console.log("list created")
     let display = []
     for (let arr of finalList) {
       if (arr.list && arr.list.length) {
@@ -113,7 +112,7 @@ const DeckContainer = () => {
           cards total
         </Row>
       </Container>
-      {isLG && <PriceInfo />}
+      {/* {isLG && <PriceInfo />} */}
     </Fragment>
   )
 }

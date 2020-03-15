@@ -140,6 +140,7 @@ export const getPrice = (...args) => {
   let tixPrice = 0
 
   for (let arg of args) {
+    console.log(arg)
     for (let card of arg) {
       card.prices &&
         card.prices.usd &&

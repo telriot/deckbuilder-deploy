@@ -1,4 +1,4 @@
-import React, { Fragment, useContext } from "react"
+import React, { Fragment, useContext, useState } from "react"
 import { DecklistContext } from "../../../contexts/DecklistContext"
 import { WindowSizeContext } from "../../../contexts/WindowSizeContext"
 
@@ -13,8 +13,10 @@ const SaveEditButtonGroup = () => {
     sideboard,
     deckName,
     deckFormat,
-    setValidation
+    setValidation,
+    fileReaderIsLoading
   } = useContext(DecklistContext)
+  const { isLoading, setIsLoading } = useState(false)
   const { isXS } = useContext(WindowSizeContext)
   const params = useParams()
   const history = useHistory()
@@ -36,11 +38,12 @@ const SaveEditButtonGroup = () => {
 
   // Save changes
   const handleSaveChanges = async e => {
+    setIsLoading(true)
     e.persist()
     const colors = setColors(mainDeck, sideboard)
     validateInput()
-    await axios
-      .put(
+    try {
+      const response = await axios.put(
         `/api/decks/${params.id}`,
         {
           name: deckName,
@@ -53,20 +56,22 @@ const SaveEditButtonGroup = () => {
           "Content-Type": "raw"
         }
       )
-      .then(response => {
-        if (!response.data.errmsg) {
-          e.target.innerText === "Save Changes"
-            ? history.push(`/decks/${params.id}`)
-            : console.log("Decklist updated")
-        } else {
-          console.log(response.data.errmsg)
-        }
-      })
-      .catch(error => {
-        console.log("decklist update error: ")
-        console.log(error)
-      })
+      if (!response.data.errmsg) {
+        e.target.innerText === "Save Changes"
+          ? history.push(`/decks/${params.id}`)
+          : console.log("Decklist updated")
+      } else {
+        console.log(response.data.errmsg)
+      }
+      setIsLoading(false)
+    } catch (error) {
+      setIsLoading(false)
+
+      console.log("decklist update error: ")
+      console.log(error)
+    }
   }
+
   const btnGroupResponsive = () => {
     if (isXS) {
       return "btn-sm btn-block"
@@ -76,12 +81,14 @@ const SaveEditButtonGroup = () => {
   return (
     <Fragment>
       <Button
+        disabled={isLoading || fileReaderIsLoading}
         className={btnGroupResponsive()}
         onClick={e => handleSaveChanges(e)}
       >
         Save Changes
       </Button>
       <Button
+        disabled={isLoading || fileReaderIsLoading}
         className={btnGroupResponsive()}
         onClick={e => handleSaveChanges(e)}
       >

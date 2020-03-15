@@ -19,7 +19,8 @@ const UserEdit = () => {
     user,
     getUser,
     setIsLoading,
-    userLoading
+    userLoading,
+    isLoading
   } = useContext(UserContext)
   const { isXS } = useContext(WindowSizeContext)
   const [validation, setValidation] = useState([])
@@ -68,7 +69,13 @@ const UserEdit = () => {
   const responsiveButtonView = () => {
     if (isXS) {
       return (
-        <Button variant="primary" type="submit" className="mb-2" block>
+        <Button
+          disabled={isLoading || userLoading}
+          variant="primary"
+          type="submit"
+          className="mb-2"
+          block
+        >
           Save changes
         </Button>
       )
@@ -79,7 +86,11 @@ const UserEdit = () => {
             className="d-flex justify-content-center"
             style={{ fontSize: "0.8rem" }}
           >
-            <Button variant="primary" type="submit">
+            <Button
+              disabled={isLoading || userLoading}
+              variant="primary"
+              type="submit"
+            >
               Save changes
             </Button>
           </Card.Body>

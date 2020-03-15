@@ -69,7 +69,7 @@ const UserProfile = () => {
               style={isXS ? "sm" : "lg"}
             />
           ) : (
-            <UserDeckDisplay params={params}></UserDeckDisplay>
+            <UserDeckDisplay params={params} />
           )}
         </Col>
       </Row>

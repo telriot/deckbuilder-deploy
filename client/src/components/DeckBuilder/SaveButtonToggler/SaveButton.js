@@ -1,4 +1,4 @@
-import React, { useContext } from "react"
+import React, { useContext, useState } from "react"
 import { WindowSizeContext } from "../../../contexts/WindowSizeContext"
 import { DecklistContext } from "../../../contexts/DecklistContext"
 import { AuthContext } from "../../../contexts/AuthContext"
@@ -13,8 +13,10 @@ const SaveButton = () => {
     mainDeck,
     sideboard,
     deckName,
-    deckFormat
+    deckFormat,
+    fileReaderIsLoading
   } = useContext(DecklistContext)
+  const [isLoading, setIsLoading] = useState(false)
   const { auth } = useContext(AuthContext)
   const history = useHistory()
   const { isXS } = useContext(WindowSizeContext)
@@ -35,11 +37,12 @@ const SaveButton = () => {
   }
 
   // Save decklist
-  const handleSave = () => {
+  const handleSave = async () => {
+    setIsLoading(true)
     const colors = setColors(mainDeck, sideboard)
     validateInput()
-    axios
-      .post(
+    try {
+      const response = await axios.post(
         "api/decks/",
         {
           name: deckName,
@@ -53,25 +56,25 @@ const SaveButton = () => {
           "Content-Type": "raw"
         }
       )
-      .then(response => {
-        if (!response.data.errmsg) {
-          history.push(`/decks/${response.data._id}`)
-        } else {
-          console.log(response.data.errmsg)
-        }
-      })
-      .catch(error => {
-        console.log(error)
-      })
-  }
-  const btnResponsive = () => {
-    if (isXS) {
-      return "btn-sm btn-block"
+      setIsLoading(false)
+      if (!response.data.errmsg) {
+        history.push(`/decks/${response.data._id}`)
+      } else {
+        console.log(response.data.errmsg)
+      }
+    } catch (error) {
+      setIsLoading(false)
+
+      console.log(error)
     }
-    return "btn-sm"
   }
+
   return (
-    <Button className={btnResponsive()} onClick={e => handleSave(e)}>
+    <Button
+      disabled={isLoading || fileReaderIsLoading}
+      className={isXS ? "btn-sm btn-block" : "btn-sm"}
+      onClick={e => handleSave(e)}
+    >
       Save
     </Button>
   )

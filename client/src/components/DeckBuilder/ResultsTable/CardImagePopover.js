@@ -21,9 +21,11 @@ const CardImagePopover = props => {
           <Popover.Content>
             <Image src={image}></Image>
             <div style={{ fontSize: "0.7rem", textAlign: "center" }}>
-              <span style={{ display: "inline-block" }}>
-                Hold Shift to add 4
-              </span>
+              {!isMobile && (
+                <span style={{ display: "inline-block" }}>
+                  Hold Shift to add 4
+                </span>
+              )}
             </div>
           </Popover.Content>
         </Popover>
