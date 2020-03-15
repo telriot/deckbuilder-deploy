@@ -9,9 +9,9 @@ const LoadingOverlay = props => {
     return {
       display: "block",
       backgroundColor: loadingOverlayColor,
-      position: "absolute",
+      position: "sticky",
       textAlign: "center",
-      top: "75px",
+      top: "25px",
       left: "30%",
       width: "150px",
       height: "30px",
@@ -27,7 +27,7 @@ const LoadingOverlay = props => {
     return {
       display: "block",
       backgroundColor: loadingOverlayColor,
-      position: "absolute",
+      position: "sticky",
       textAlign: "center",
       top: "150px",
       left: "30%",

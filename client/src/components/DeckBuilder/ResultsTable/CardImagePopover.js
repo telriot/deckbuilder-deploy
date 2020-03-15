@@ -12,7 +12,8 @@ const CardImagePopover = props => {
       onExit={() => setHover("")}
       overlay={
         <Popover
-          onClick={() => {
+          onClick={e => {
+            e.preventDefault()
             isMobile && setHover("")
           }}
           id="card-popover"
