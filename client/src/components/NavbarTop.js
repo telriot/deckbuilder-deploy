@@ -8,19 +8,17 @@ import AuthModalButton from "./Navbar/AuthModalButton"
 const NavbarTop = () => {
   const { auth, setAuth } = useContext(AuthContext)
 
-  const handleLogout = () => {
-    axios
-      .post("/api/auth/logout")
-      .then(response => {
-        if (!response.data.errmsg) {
-          setAuth({ isAuthenticated: false, authUser: "", authUserId: "" })
-        } else {
-          console.log(response.data.errmsg, "no logout")
-        }
-      })
-      .catch(error => {
-        console.log("logout error", error)
-      })
+  const handleLogout = async () => {
+    try {
+      const response = axios.post("/api/auth/logout")
+      if (!response.data.errmsg) {
+        setAuth({ isAuthenticated: false, authUser: "", authUserId: "" })
+      } else {
+        console.log(response.data.errmsg, "no logout")
+      }
+    } catch (error) {
+      console.log("logout error", error)
+    }
   }
 
   return (

@@ -1,17 +1,29 @@
-import React, { Fragment, useContext } from "react"
+import React, { Fragment, useContext, useEffect } from "react"
+import { useHistory } from "react-router-dom"
 import { Container, Row } from "react-bootstrap"
 import { palette } from "../helpers"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faMortarPestle } from "@fortawesome/free-solid-svg-icons"
 import { WindowSizeContext } from "../contexts/WindowSizeContext"
+import { AuthContext } from "../contexts/AuthContext"
 import LandingMainTextCol from "./Landing/LandingMainTextCol"
 import LandingMainPicCol from "./Landing/LandingMainPicCol"
 import LandingFeatureCard from "./Landing/LandingFeatureCard"
 import { isMobile } from "react-device-detect"
-const { stdGray } = palette
 
 const Landing = () => {
   const { isXS, isMD } = useContext(WindowSizeContext)
+  const { auth } = useContext(AuthContext)
+  const { stdGray } = palette
+  const history = useHistory()
+
+  const autoRedirect = () => {
+    auth.isAuthenticated && history.push("./index")
+  }
+
+  useEffect(() => {
+    autoRedirect()
+  }, [])
 
   const gradientDivStyle = heightString => {
     return {
