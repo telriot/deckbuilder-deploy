@@ -31,7 +31,7 @@ const AuthLogin = () => {
             authUser: response.data.username,
             authUserId: response.data.id
           })
-          history.push("/")
+          history.push("/index")
         }
       })
       .catch(error => {

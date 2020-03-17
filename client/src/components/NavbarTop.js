@@ -8,7 +8,7 @@ import AuthModalButton from "./Navbar/AuthModalButton"
 const NavbarTop = () => {
   const { auth, setAuth } = useContext(AuthContext)
 
-  const handleLogout = e => {
+  const handleLogout = () => {
     axios
       .post("/api/auth/logout")
       .then(response => {
@@ -26,16 +26,19 @@ const NavbarTop = () => {
   return (
     <Navbar bg="light" expand="lg" className="py-1 mb-2">
       <LinkContainer to="/">
-        <Navbar.Brand>DeckLog</Navbar.Brand>
+        <Navbar.Brand className="pt-0">DeckLog</Navbar.Brand>
       </LinkContainer>
       <Navbar.Toggle
         aria-controls="basic-navbar-nav"
         className="border-0 p-0"
       />
       <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="mr-auto">
+        <Nav className="mr-auto align-items-center">
           {auth.isAuthenticated && (
             <Fragment>
+              <LinkContainer exact to="/index">
+                <Nav.Link>DeckSearch</Nav.Link>
+              </LinkContainer>
               <LinkContainer exact to="/build">
                 <Nav.Link>DeckBuilder</Nav.Link>
               </LinkContainer>

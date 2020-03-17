@@ -10,27 +10,9 @@ const AuthModalButton = props => {
     setLoginModalShow,
     signupModalShow,
     setSignupModalShow,
-    setValidation,
-    setLoginData,
-    setSignupData,
-    validationInitialState,
-    signupDataInitialState,
-    loginDataInitialState,
-    setSignupSuccess
+    handleOnHide
   } = useContext(AuthContext)
 
-  const handleOnHide = () => {
-    if (type === "Login") {
-      setValidation(validationInitialState)
-      setLoginData(loginDataInitialState)
-      setLoginModalShow(false)
-      setSignupSuccess(false)
-    } else if (type === "Signup") {
-      setValidation(validationInitialState)
-      setSignupModalShow(false)
-      setSignupData(signupDataInitialState)
-    }
-  }
   return (
     <Fragment>
       <NavItem
@@ -44,7 +26,7 @@ const AuthModalButton = props => {
       </NavItem>
       <AuthModal
         show={type === "Login" ? loginModalShow : signupModalShow}
-        onHide={() => handleOnHide()}
+        onHide={() => handleOnHide(type)}
         type={type}
       />
     </Fragment>

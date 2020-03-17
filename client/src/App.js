@@ -20,15 +20,11 @@ import PasswordResetPage from "./components/Auth/PasswordResetPage"
 const App = () => {
   return (
     <Fragment>
-      <NavbarTop />
+      <Route exact path="/*">
+        <NavbarTop />
+      </Route>
       <Switch>
-        <Route exact path="/signup">
-          <AuthSignup />
-        </Route>
-        <Route exact path="/login">
-          <AuthLogin />
-        </Route>
-        <Route exact path="/">
+        <Route exact path="/index">
           <DecklistContextProvider>
             <Index />
           </DecklistContextProvider>

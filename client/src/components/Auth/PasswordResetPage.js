@@ -51,7 +51,7 @@ const PasswordResetPage = () => {
         setFormData(dataInitialState)
         setErrors({ server: "" })
         setUpdated(false)
-        history.push("/")
+        history.push("/index")
       }
     } catch (error) {
       console.log(error)
@@ -146,7 +146,7 @@ const PasswordResetPage = () => {
 
           <Button
             onClick={() => {
-              history.push("/")
+              history.push("/index")
             }}
             className="mx-auto"
             style={{ maxWidth: "500px" }}
@@ -243,7 +243,7 @@ const PasswordResetPage = () => {
                 <Button
                   className="mx-3"
                   onClick={() => {
-                    history.push("/")
+                    history.push("/index")
                   }}
                 >
                   Go to the Home Page

@@ -27,7 +27,7 @@ const Signup = () => {
       .then(response => {
         if (!response.data.errmsg) {
           console.log("successful signup")
-          history.push("/")
+          history.push("/index")
         } else {
           console.log(response.data.errmsg)
         }

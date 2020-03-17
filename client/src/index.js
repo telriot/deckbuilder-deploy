@@ -3,17 +3,23 @@ import ReactDOM from "react-dom"
 import "bootstrap/dist/css/bootstrap.min.css"
 import App from "./App"
 import * as serviceWorker from "./serviceWorker"
-import { BrowserRouter as Router } from "react-router-dom"
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
+import Landing from "./components/Landing"
 import AuthContextProvider from "./contexts/AuthContext"
 import WindowSizeContextProvider from "./contexts/WindowSizeContext"
 
 ReactDOM.render(
   <Router>
-    <AuthContextProvider>
-      <WindowSizeContextProvider>
+    <WindowSizeContextProvider>
+      <AuthContextProvider>
+        <Switch>
+          <Route exact path="/">
+            <Landing />
+          </Route>
+        </Switch>
         <App />
-      </WindowSizeContextProvider>
-    </AuthContextProvider>
+      </AuthContextProvider>
+    </WindowSizeContextProvider>
   </Router>,
   document.getElementById("root")
 )

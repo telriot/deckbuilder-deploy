@@ -173,6 +173,19 @@ const AuthContextProvider = props => {
     return result
   }
 
+  const handleOnHide = type => {
+    if (type === "Login") {
+      setValidation(validationInitialState)
+      setLoginData(loginDataInitialState)
+      setLoginModalShow(false)
+      setSignupSuccess(false)
+    } else if (type === "Signup") {
+      setValidation(validationInitialState)
+      setSignupModalShow(false)
+      setSignupData(signupDataInitialState)
+    }
+  }
+
   return (
     <AuthContext.Provider
       value={{
@@ -197,7 +210,8 @@ const AuthContextProvider = props => {
         isLoading,
         setIsLoading,
         signupServerError,
-        setSignupServerError
+        setSignupServerError,
+        handleOnHide
       }}
     >
       {props.children}

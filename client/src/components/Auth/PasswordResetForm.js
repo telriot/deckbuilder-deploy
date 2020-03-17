@@ -124,7 +124,7 @@ const PasswordResetForm = () => {
           </Button>
           {errors.server && <Button className="mx-3">Register</Button>}
           {messageFromServer && (
-            <Button className="mx-3" onClick={() => history.push("/")}>
+            <Button className="mx-3" onClick={() => history.push("/index")}>
               Go to the Home Page
             </Button>
           )}
