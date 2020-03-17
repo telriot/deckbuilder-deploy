@@ -1,8 +1,6 @@
 import React, { Fragment } from "react"
 import { Switch, Route } from "react-router-dom"
 import NavbarTop from "./components/NavbarTop"
-import AuthLogin from "./components/AuthLogin"
-import AuthSignup from "./components/AuthSignup"
 import Index from "./components/Index"
 import DeckBuilder from "./components/DeckBuilder"
 import DeckShow from "./components/DeckShow"

@@ -16,8 +16,10 @@ ReactDOM.render(
           <Route exact path="/">
             <Landing />
           </Route>
+          <Route exact path="/*">
+            <App />
+          </Route>{" "}
         </Switch>
-        <App />
       </AuthContextProvider>
     </WindowSizeContextProvider>
   </Router>,
